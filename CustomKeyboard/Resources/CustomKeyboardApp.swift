@@ -11,7 +11,7 @@ import SwiftUI
 struct CustomKeyboardApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TestView()
         }
     }
 }
