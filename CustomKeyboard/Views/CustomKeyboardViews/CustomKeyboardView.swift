@@ -83,8 +83,10 @@ struct CustomKeyboardView: View {
                 isUppercase = true
                 capslockKeyImage = .shiftFill
             } else {
-                isUppercase = false
-                capslockKeyImage = .shift
+                if capslockKeyImage != .capslockFill { // TODO: Check this properly
+                    isUppercase = false
+                    capslockKeyImage = .shift
+                }
             }
         })
         .padding(.bottom, 5)

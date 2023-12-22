@@ -12,9 +12,9 @@ class KeyboardState: ObservableObject {
     
     @Published var shouldCapitalizeLetters = false
     
-    func runFunc() {
-        print(shouldCapitalizeLetters)
-    }
+//    func runFunc() {
+//        print(shouldCapitalizeLetters)
+//    }
 }
 
 class CustomKeyboardViewViewModel: ObservableObject {

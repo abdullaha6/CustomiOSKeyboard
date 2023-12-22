@@ -27,26 +27,23 @@ enum CKKeyboards {
 struct CKKeys {
     
     static let lowercaseKeys: [[String]] = [
-        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["caps", "gap1", "z", "x", "c", "v", "b", "n", "m", "gap2", "delete"],
-        ["!#1","emoji", ",", "space", ".or?","return"]
+        ["123","emoji", "space", ".or?","return"]
     ]
     
     static let numberKeys: [[String]] = [
-        ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
         ["#+=", "gap1", ".", ",", "?", "!", "'", "gap2", "delete"],
-        ["abc","emoji", ",", "space", ".","return"]
+        ["abc","emoji", "space", ".","return"]
     ]
     
     static let symbolKeys: [[String]] = [
-        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
         ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
         ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
         ["123", "gap1", ".", ",", "?", "!", "'", "gap2", "delete"],
-        ["abc","emoji", ",", "space", ".","return"]
+        ["abc","emoji", "space", ".","return"]
     ]
 }

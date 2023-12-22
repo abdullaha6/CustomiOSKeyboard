@@ -95,9 +95,9 @@ struct KeyPlaceholderView: View {
     // There are 9 gaps, each of length 5
     // So 8 + (9 * 5) = 53
     // Dividing by 10 beacuse that's the maximum nuumber of keys for a row
-    @State var normalKeyWidth = (UIScreen.main.bounds.width - 53) / 10
+//    @State var normalKeyWidth = (UIScreen.main.bounds.width - 53) / 10
     //    @State var normalKeyWidth = UIScreen.main.bounds.width * 0.05
-    @State var normalKeyHeight = UIScreen.main.bounds.height * 0.048
+//    @State var normalKeyHeight = UIScreen.main.bounds.height * 0.048
     
     @State var isPressing = false
     
@@ -140,10 +140,10 @@ struct KeyPlaceholderView: View {
             var width = UIDevice.deviceModel.widthPortrait
             
             if placeholder == "space" {
-                // 30 -> because the leading and trailing padding is 8 (4 + 4)
-                // There are 5 gaps, each of length 5
-                // (5 * 6) + 8 = 38
-                let spaceKeyWidth = UIScreen.main.bounds.width - ((width * 5) + 38)
+                // 32 -> because the leading and trailing padding is 8 (4 + 4)
+                // There are 4 gaps, each of length 6 -> (6 for portrait, 5 for landscape)
+                // (4 * 6) + 8 = 32
+                let spaceKeyWidth = UIScreen.main.bounds.width - ((width * 4) + 32)
                 width = spaceKeyWidth
             }
             
@@ -180,7 +180,7 @@ struct KeyPlaceholderView: View {
     
     func keyBackground() -> Color {
         // Cannot use switch because this check with both key and placeholder
-        if key == "caps" || key == "delete" || key == "emoji" || placeholder == "!#1" || placeholder == "#+=" || placeholder == "123" || placeholder == "ABC" || placeholder == "abc" || key == "return" {
+        if key == "caps" || key == "delete" || key == "emoji" || placeholder == "#+=" || placeholder == "123" || placeholder == "ABC" || placeholder == "abc" || key == "return" {
             
             if isPressing {
                 return .gray
