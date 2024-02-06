@@ -31,12 +31,12 @@ enum CKKeySize: String {
             return 43
         case .iPhone_XR, .iPhone_11:
             return 43
-        case .iPhone_12_mini, .iPhone_13_mini:
-            return 39
+        case .iPhone_12_mini, .iPhone_13_mini: // ✅
+            return 42.02
         case .iPhone_12, .iPhone_12_Pro, .iPhone_13, .iPhone_13_Pro, .iPhone_14, .iPhone_14_Pro:
             return 43
         case .iPhone_12_Pro_Max, .iPhone_13_Pro_Max, .iPhone_14_Plus, .iPhone_14_Pro_Max, .iPhone_15, .iPhone_15_Pro:
-            return 43
+            return 42
         case .iPhone_15_Plus, .iPhone_15_Pro_Max:
             return 45
         }
@@ -54,12 +54,12 @@ enum CKKeySize: String {
             return 36
         case .iPhone_XR, .iPhone_11:
             return 32
-        case .iPhone_12_mini, .iPhone_13_mini:
-            return 26
+        case .iPhone_12_mini, .iPhone_13_mini: // ✅
+            return 31.25
         case .iPhone_12, .iPhone_12_Pro, .iPhone_13, .iPhone_13_Pro, .iPhone_14, .iPhone_14_Pro:
             return 32
         case .iPhone_12_Pro_Max, .iPhone_13_Pro_Max, .iPhone_14_Plus, .iPhone_14_Pro_Max, .iPhone_15, .iPhone_15_Pro:
-            return 36
+            return 33.34
         case .iPhone_15_Plus, .iPhone_15_Pro_Max:
             return 36.6
         }
@@ -77,12 +77,12 @@ enum CKKeySize: String {
             return 43
         case .iPhone_XR, .iPhone_11:
             return 43
-        case .iPhone_12_mini, .iPhone_13_mini:
-            return 39
+        case .iPhone_12_mini, .iPhone_13_mini: // ✅
+            return 29.87
         case .iPhone_12, .iPhone_12_Pro, .iPhone_13, .iPhone_13_Pro, .iPhone_14, .iPhone_14_Pro:
             return 43
         case .iPhone_12_Pro_Max, .iPhone_13_Pro_Max, .iPhone_14_Plus, .iPhone_14_Pro_Max, .iPhone_15, .iPhone_15_Pro:
-            return 43
+            return 32
         case .iPhone_15_Plus, .iPhone_15_Pro_Max:
             return 32
         }
@@ -100,12 +100,12 @@ enum CKKeySize: String {
             return 36
         case .iPhone_XR, .iPhone_11:
             return 32
-        case .iPhone_12_mini, .iPhone_13_mini:
-            return 26
+        case .iPhone_12_mini, .iPhone_13_mini: // ✅
+            return 60.07
         case .iPhone_12, .iPhone_12_Pro, .iPhone_13, .iPhone_13_Pro, .iPhone_14, .iPhone_14_Pro:
             return 32
         case .iPhone_12_Pro_Max, .iPhone_13_Pro_Max, .iPhone_14_Plus, .iPhone_14_Pro_Max, .iPhone_15, .iPhone_15_Pro:
-            return 36
+            return 65
         case .iPhone_15_Plus, .iPhone_15_Pro_Max:
             return 65
         }

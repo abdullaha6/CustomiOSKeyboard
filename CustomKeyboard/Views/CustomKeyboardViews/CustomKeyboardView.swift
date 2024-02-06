@@ -30,6 +30,9 @@ struct CustomKeyboardView: View {
         
         VStack(spacing: 10) {
             Spacer()
+                .onAppear {
+                    print(UIDevice.deviceModel)
+                }
             
             ForEach(keyboards.selectecKeyboard, id: \.self) { row in
                 HStack(spacing: horizontalSizeClass == .compact ? 6 : 5) { // 5 for landscape

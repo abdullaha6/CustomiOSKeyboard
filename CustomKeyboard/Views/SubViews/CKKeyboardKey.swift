@@ -49,13 +49,12 @@ enum KeyPlaceholder: String {
 struct CKKeyboardKey: View {
     let key             : String
     var capslockKeyImage: CapslockKeyPlaceholder = .shift
-    var selectedKeyboard: CKKeyboards           = .lowercaseKeys
+    var selectedKeyboard: CKKeyboards            = .lowercaseKeys
     
     var body: some View {
         
         if key.contains("gap") {
             Spacer()
-                .onAppear { print(selectedKeyboard)}
             
         } else {
             Button {} label: {
@@ -85,6 +84,8 @@ struct CKKeyboardKey: View {
 
 struct KeyPlaceholderView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass)   var verticalSizeClass
+//    @State private var currentOrientation = UIDevice.current.orientation
     
     let isImage    : Bool
     let placeholder: String  // Placeholder is used for images
@@ -122,21 +123,25 @@ struct KeyPlaceholderView: View {
         }
         //            .frame(width: keyWidth(), height: normalKeyHeight)
         .frame(width: keyWidth(), height: keyHeight())
+        .onAppear {
+            print(keyWidth())
+        }
         .foregroundStyle(.foreground)
         .background(keyBackground())
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .shadow(color: .gray, radius: 0, x: 0, y: isPressing ? 0 : 2) // Change shadow color to black for dark mode
         .animation(.linear(duration: 0.1), value: isPressing)
-        .onLongPressGesture(minimumDuration: .greatestFiniteMagnitude) {
-        } onPressingChanged: { isPressing in
+        .onLongPressGesture(minimumDuration: .greatestFiniteMagnitude) {}
+        onPressingChanged: { isPressing in
             self.isPressing = isPressing
         }
         
     }
     
     func keyWidth() -> CGFloat {
-        // PORTRAIT
-        if horizontalSizeClass == .compact {
+        
+        if horizontalSizeClass == .compact && verticalSizeClass == .regular {
+            // Adjust layout for PORTRAIT orientation
             var width = UIDevice.deviceModel.widthPortrait
             
             if placeholder == "space" {
@@ -146,10 +151,10 @@ struct KeyPlaceholderView: View {
                 let spaceKeyWidth = UIScreen.main.bounds.width - ((width * 4) + 32)
                 width = spaceKeyWidth
             }
-            
             return width
             
-        } else { // LANDSCAPE
+        } else {
+            // Adjust layout for LANDSCAPE orientation
             var width = UIDevice.deviceModel.widthLandscape
             
             if placeholder == "space" {
@@ -165,15 +170,14 @@ struct KeyPlaceholderView: View {
     }
     
     func keyHeight() -> CGFloat  {
-        // PORTRAIT
-        if horizontalSizeClass == .compact {
+        if horizontalSizeClass == .compact && verticalSizeClass == .regular {
+            // Adjust layout for PORTRAIT orientation
             let height = UIDevice.deviceModel.heightPortrait
-            
             return height
             
-        } else { // LANDSCAPE
+        } else {
+            // Adjust layout for LANDSCAPE orientation
             let height = UIDevice.deviceModel.heightLandscape
-            
             return height
         }
     }
