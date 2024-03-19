@@ -121,11 +121,7 @@ struct KeyPlaceholderView: View {
                 }
             }
         }
-        //            .frame(width: keyWidth(), height: normalKeyHeight)
         .frame(width: keyWidth(), height: keyHeight())
-        .onAppear {
-            print(keyWidth())
-        }
         .foregroundStyle(.foreground)
         .background(keyBackground())
         .clipShape(RoundedRectangle(cornerRadius: 6))

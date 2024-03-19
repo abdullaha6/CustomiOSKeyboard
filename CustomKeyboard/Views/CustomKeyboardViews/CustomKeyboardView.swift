@@ -20,7 +20,7 @@ struct CustomKeyboardView: View {
     var nextKeyboard : ()       -> () = {}
     
     @State private var keyboards: CKKeyboards = .lowercaseKeys
-//    private let keyboardWidth = UIScreen.main.bounds.width - 8
+    private let screenWidth = UIScreen.main.bounds.width - 8
     
     @State private var isPressing  = false
     @State private var isUppercase = false
@@ -28,57 +28,59 @@ struct CustomKeyboardView: View {
     
     var body: some View {
         
-        VStack(spacing: 10) {
+        VStack(spacing: 0) {
             Spacer()
-                .onAppear {
-                    print(UIDevice.deviceModel)
-                }
             
-            ForEach(keyboards.selectecKeyboard, id: \.self) { row in
-                HStack(spacing: horizontalSizeClass == .compact ? 6 : 5) { // 5 for landscape
-                    
-                    ForEach(row, id: \.self) { key in
-                        CKKeyboardKey(key: key, capslockKeyImage: capslockKeyImage, selectedKeyboard: keyboards)
-                            .simultaneousGesture(
-                                // Long press start
-                                LongPressGesture(/*minimumDuration: 0.3*/)
-                                    .onEnded { _ in
-                                        if key == "delete" {
-                                            self.isPressing = true
-                                            startDelete()
-                                            
-                                        } else if key == ".or?" {
-                                            insertText("?")
+            // Add the Bar on top of the keyboard
+            TopBarView(insertText: insertText)
+            
+            VStack(spacing: 10) {
+                ForEach(keyboards.selectecKeyboard, id: \.self) { row in
+                    HStack(spacing: horizontalSizeClass == .compact ? 6 : 5) { // 5 for landscape
+                        
+                        ForEach(row, id: \.self) { key in
+                            CKKeyboardKey(key: key, capslockKeyImage: capslockKeyImage, selectedKeyboard: keyboards)
+                                .simultaneousGesture(
+                                    // Long press start
+                                    LongPressGesture(/*minimumDuration: 0.3*/)
+                                        .onEnded { _ in
+                                            if key == "delete" {
+                                                self.isPressing = true
+                                                startDelete()
+                                                
+                                            } else if key == ".or?" {
+                                                insertText("?")
+                                            }
                                         }
+                                ) // Long press end
+                                .onLongPressGesture(perform: {}, onPressingChanged: { isPressing in
+                                    if !isPressing {
+                                        self.isPressing = false
                                     }
-                            ) // Long press end
-                            .onLongPressGesture(perform: {}, onPressingChanged: { isPressing in
-                                if !isPressing {
-                                    self.isPressing = false
-                                }
-                            })
-                            .simultaneousGesture(
-                                // Single taps
-                                TapGesture().onEnded {
-                                    isPressing = false
-                                    inputText(key: key)
-                                }
-                                // Double Tap
-                                    .sequenced(before: TapGesture(count: 2).onEnded {
-                                        if key == "caps" {
-                                            isUppercase = true
-                                            capslockKeyImage = .capslockFill
-                                        }  else if key == "space" {
-                                            insertPeriod()
-                                        } else {
-                                            inputText(key: key)
+                                })
+                                .simultaneousGesture(
+                                    // Single taps
+                                    TapGesture().onEnded {
+                                        isPressing = false
+                                        inputText(key: key)
+                                    }
+                                    // Double Tap
+                                        .sequenced(before: TapGesture(count: 2).onEnded {
+                                            if key == "caps" {
+                                                isUppercase = true
+                                                capslockKeyImage = .capslockFill
+                                            }  else if key == "space" {
+                                                insertPeriod()
+                                            } else {
+                                                inputText(key: key)
+                                            }
                                         }
-                                    }
-                                              )
-                            )
+                                                  )
+                                )
+                        }
                     }
+                    
                 }
-                
             }
         }
         .onReceive(keyboardState.$shouldCapitalizeLetters, perform: { shouldCapitalize in
